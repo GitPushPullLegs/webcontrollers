@@ -1,0 +1,8 @@
+README.md
+setup.py
+webcontrollers/__init__.py
+webcontrollers.egg-info/PKG-INFO
+webcontrollers.egg-info/SOURCES.txt
+webcontrollers.egg-info/dependency_links.txt
+webcontrollers.egg-info/requires.txt
+webcontrollers.egg-info/top_level.txt
