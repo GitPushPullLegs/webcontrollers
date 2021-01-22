@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='webcontrollers',
-    version='0.0.4',
+    version='0.0.5',
     description='A package to faciliate the interaction with CAASPP, SEIS, and more.',
     url='https://github.com/GitPushPullLegs/webcontrollers',
     author='Joe Aguilar',
@@ -10,14 +10,15 @@ setup(
     license='MIT License',
     package_dir={'webcontrollers': 'webcontrollers',
                  'webcontrollers.common': 'webcontrollers/common',
+                 'webcontrollers.caaspp': 'webcontrollers/caaspp',
     },
-    packages=['webcontrollers', 'webcontrollers.common'],
+    packages=['webcontrollers', 'webcontrollers.common', 'webcontrollers.caaspp'],
     install_requires=['selenium'],
     classifiers=[
         'Development Status :: 1 - Planning',
-        'Intended Audience :: Science/Research',
+        'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'Operating System :: POSIX :: Linux',
+        'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
