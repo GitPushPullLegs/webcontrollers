@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='webcontrollers',
-    version='0.0.1',
+    version='0.0.2',
     description='A package to faciliate the interaction with CAASPP, SEIS, and more.',
     url='https://github.com/GitPushPullLegs/webcontrollers',
     author='Joe Aguilar',
