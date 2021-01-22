@@ -8,7 +8,7 @@ from webcontrollers.common.errors import *
 
 class CERSController(WebController):
 
-    def login(self, username: str, password: str, retrieve_login_code=None):
+    def login(self, username: str, password: str, retrieve_login_code=None, **kwargs):
         """
         Logs into CERS.
         :param username:
@@ -32,7 +32,7 @@ class CERSController(WebController):
             if not retrieve_login_code:
                 raise AuthenticationError('Missing login code function.')
 
-            email_code = retrieve_login_code()
+            email_code = retrieve_login_code(**kwargs)
             self.driver.find_element_by_id('emailcode').send_keys(email_code)
             self.driver.find_element_by_xpath('//*[@id="kc-login"]').click()
 
