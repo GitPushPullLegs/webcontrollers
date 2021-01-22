@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: webcontrollers
-Version: 0.0.6
+Version: 0.0.7
 Summary: A package to faciliate the interaction with CAASPP, SEIS, and more.
 Home-page: https://github.com/GitPushPullLegs/webcontrollers
 Author: Joe Aguilar
