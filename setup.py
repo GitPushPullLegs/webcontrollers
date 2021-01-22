@@ -8,7 +8,7 @@ setup(
     author='Joe Aguilar',
     author_email='jose.aguilar.6694@gmail.com',
     license='MIT License',
-    packages=find_packages(),
+    packages=['webcontrollers', 'webcontrollers.common'],
     install_requires=['selenium'],
     classifiers=[
         'Development Status :: 1 - Planning',
