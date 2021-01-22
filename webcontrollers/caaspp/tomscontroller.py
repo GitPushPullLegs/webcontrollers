@@ -1,4 +1,4 @@
-from webcontrollers.common.webcontroller import WebController
+from webcontrollers.common import WebController
 from selenium.common.exceptions import *
 from webcontrollers.common.errors import *
 import re

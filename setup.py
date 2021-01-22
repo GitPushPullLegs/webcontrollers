@@ -8,7 +8,10 @@ setup(
     author='Joe Aguilar',
     author_email='jose.aguilar.6694@gmail.com',
     license='MIT License',
-    packages=['webcontrollers'],
+    package_dir={'webcontrollers': 'webcontrollers',
+                 'webcontrollers.common': 'webcontrollers/common',
+    },
+    packages=['webcontrollers', 'webcontrollers.common'],
     install_requires=['selenium'],
     classifiers=[
         'Development Status :: 1 - Planning',
@@ -21,4 +24,5 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
+    include_package_data=True,
 )
