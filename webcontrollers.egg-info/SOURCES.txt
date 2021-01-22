@@ -6,6 +6,5 @@ webcontrollers.egg-info/SOURCES.txt
 webcontrollers.egg-info/dependency_links.txt
 webcontrollers.egg-info/requires.txt
 webcontrollers.egg-info/top_level.txt
-webcontrollers/common/__init__.py
 webcontrollers/common/errors.py
 webcontrollers/common/webcontroller.py

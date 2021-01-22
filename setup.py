@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='webcontrollers',
-    version='0.0.2',
+    version='0.0.3',
     description='A package to faciliate the interaction with CAASPP, SEIS, and more.',
     url='https://github.com/GitPushPullLegs/webcontrollers',
     author='Joe Aguilar',
     author_email='jose.aguilar.6694@gmail.com',
     license='MIT License',
-    packages=['webcontrollers', 'webcontrollers.common'],
+    packages=['webcontrollers'],
     install_requires=['selenium'],
     classifiers=[
         'Development Status :: 1 - Planning',

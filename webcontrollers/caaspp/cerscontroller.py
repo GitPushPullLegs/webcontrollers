@@ -1,4 +1,4 @@
-from webcontrollers.common import WebController
+from webcontrollers.common.webcontroller import WebController
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import *
 from selenium.webdriver.support.ui import WebDriverWait
