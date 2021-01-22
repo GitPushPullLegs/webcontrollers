@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='webcontrollers',
@@ -8,7 +8,7 @@ setup(
     author='Joe Aguilar',
     author_email='jose.aguilar.6694@gmail.com',
     license='MIT License',
-    packages=['webcontrollers'],
+    packages=find_packages(),
     install_requires=['selenium'],
     classifiers=[
         'Development Status :: 1 - Planning',
