@@ -12,3 +12,5 @@ webcontrollers/caaspp/tomscontroller.py
 webcontrollers/common/__init__.py
 webcontrollers/common/errors.py
 webcontrollers/common/webcontroller.py
+webcontrollers/common/drivers/__init__.py
+webcontrollers/common/html/__init__.py
