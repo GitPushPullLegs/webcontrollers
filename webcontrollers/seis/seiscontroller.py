@@ -12,10 +12,11 @@ class SEISController(WebController):
 
         self.driver.find_element_by_id('username').send_keys(username)
         self.driver.find_element_by_id('password').send_keys(password)
-        self.driver.find_element_by_xpath('//*[text()="Login"]')
+        self.driver.find_element_by_xpath('//*[@id="loginForm"]/div[2]/div/button').click()
+        BrowserWait(browser=self.driver).until_angular_loads()
 
         try:
-            if self.driver.find_element_by_xpath('//*[text()="Forgot Password Link"]'):
+            if self.driver.find_element_by_xpath('//*[@id="loginForm"]/div[3]/div'):
                 raise AuthenticationError("Username or password incorrect.")
-        except Exception as exc:
+        except NoSuchElementException as exc:
             pass
