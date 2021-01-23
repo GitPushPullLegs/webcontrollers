@@ -1,6 +1,7 @@
 from .common import WebController
 from .caaspp import TOMSController
 from .caaspp import CERSController
+from .seis import SEISController
 
 
 __version__ = '0.0.11'
