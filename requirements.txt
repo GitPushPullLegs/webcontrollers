@@ -1,5 +1,0 @@
-webcontrollers~=0.0.1
-selenium~=3.141.0
-setuptools~=51.3.3
-python-dateutil~=2.8.1
-wait~=0.0.2
