@@ -1,9 +1,12 @@
-from webcontrollers.common import WebController
-from selenium.common.exceptions import *
-from webcontrollers.common.errors import *
-from wait import BrowserWait, Wait
 from datetime import datetime, timedelta
+
 import dateutil.parser
+from selenium.common.exceptions import *
+from wait import BrowserWait, Wait
+
+from webcontrollers.common import WebController
+from webcontrollers.common.errors import *
+
 
 class SEISController(WebController):
 

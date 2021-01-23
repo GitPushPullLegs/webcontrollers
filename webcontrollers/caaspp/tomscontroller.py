@@ -1,8 +1,10 @@
-from webcontrollers.common import WebController
-from selenium.common.exceptions import *
-from webcontrollers.common.errors import *
-import re
 import json
+import re
+
+from selenium.common.exceptions import *
+
+from webcontrollers.common import WebController
+from webcontrollers.common.errors import *
 
 
 class TOMSController(WebController):
@@ -38,7 +40,10 @@ class TOMSController(WebController):
     def _gather_user_info(self):
         """Pulls the user info and role info from the source code."""
         source = self.driver.page_source
-        caaspp_info = json.loads(re.findall(r"(?<=var caasppInfoString = '){[A-Za-z0-9\\\" :,_{}\[\].@-]+}(?=')", source)[0].replace("\\t", "").replace("\\", ""))
+        caaspp_info = json.loads(
+            re.findall(r"(?<=var caasppInfoString = '){[A-Za-z0-9\\\" :,_{}\[\].@-]+}(?=')", source)[0].replace("\\t",
+                                                                                                                "").replace(
+                "\\", ""))
         self.username = caaspp_info['info']['userInfo']['username']
         self.user_id = caaspp_info['info']['userInfo']['user_id']
 
@@ -52,7 +57,8 @@ class TOMSController(WebController):
         if not outfile_path.endswith(".csv"):
             raise AttributeError("outfile_path must end with .csv.")
 
-        import csv  # This function is for convenience, it will not be used often and we don't need to import csv for the rest of the module.
+        import \
+            csv  # This function is for convenience, it will not be used often and we don't need to import csv for the rest of the module.
 
         with open(outfile_path, 'w', newline='') as file:
             csv_writer = csv.writer(file)
@@ -63,7 +69,7 @@ class TOMSController(WebController):
                     header = False
                 csv_writer.writerow(role.values())
 
-    def set_role(self, organization_id:int, role_id:int):
+    def set_role(self, organization_id: int, role_id: int):
         """
         Sets the role of the user in TOMS.
 
@@ -88,7 +94,3 @@ class TOMSController(WebController):
         ]
 
         self.driver.get('&'.join(str(part) for part in url_parts.values()))
-
-
-
-
