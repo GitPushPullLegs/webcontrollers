@@ -10,7 +10,8 @@ setup(
     license='MIT License',
     packages=find_packages(exclude=[]),
     install_requires=['selenium',
-                      'wait @ git+https://github.com/GitPushPullLegs/wait.git'],
+                      'wait @ git+https://github.com/GitPushPullLegs/wait.git',
+                      'python-dateutil'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
