@@ -7,6 +7,11 @@ from wait import BrowserWait
 class SEISController(WebController):
 
     def login(self, username: str, password: str):
+        """
+        Logs into SEIS.
+        :param username:
+        :param password:
+        """
         self.driver.get('https://seis.org/login')
         BrowserWait(browser=self.driver).until_angular_loads()
 
