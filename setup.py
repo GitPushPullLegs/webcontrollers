@@ -11,7 +11,9 @@ setup(
     packages=find_packages(exclude=[]),
     install_requires=['selenium',
                       'wait @ git+https://github.com/GitPushPullLegs/wait.git',
-                      'python-dateutil'],
+                      'python-dateutil',
+                      'requests',
+                      'lxml'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
