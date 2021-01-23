@@ -9,7 +9,8 @@ setup(
     author_email='jose.aguilar.6694@gmail.com',
     license='MIT License',
     packages=find_packages(exclude=[]),
-    install_requires=['selenium'],
+    install_requires=['selenium',
+                      'wait @ git+https://github.com/GitPushPullLegs/wait.git'],
     classifiers=[
         'Development Status :: 1 - Planning',
         'Intended Audience :: Developers',
