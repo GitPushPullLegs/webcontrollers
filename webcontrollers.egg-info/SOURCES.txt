@@ -10,8 +10,12 @@ webcontrollers.egg-info/top_level.txt
 webcontrollers/caaspp/__init__.py
 webcontrollers/caaspp/cerscontroller.py
 webcontrollers/caaspp/tomscontroller.py
+webcontrollers/calpads/__init__.py
+webcontrollers/calpads/calpadscontroller.py
 webcontrollers/common/__init__.py
 webcontrollers/common/errors.py
 webcontrollers/common/webcontroller.py
 webcontrollers/common/drivers/chromedriver.exe
 webcontrollers/common/html/welcome.html
+webcontrollers/seis/__init__.py
+webcontrollers/seis/seiscontroller.py

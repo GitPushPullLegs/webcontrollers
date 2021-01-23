@@ -1,1 +1,5 @@
 selenium
+wait@ git+https://github.com/GitPushPullLegs/wait.git
+python-dateutil
+requests
+lxml
