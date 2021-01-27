@@ -17,5 +17,7 @@ webcontrollers/common/errors.py
 webcontrollers/common/webcontroller.py
 webcontrollers/common/drivers/chromedriver.exe
 webcontrollers/common/html/welcome.html
+webcontrollers/schoology/__init__.py
+webcontrollers/schoology/schoologycontroller.py
 webcontrollers/seis/__init__.py
 webcontrollers/seis/seiscontroller.py

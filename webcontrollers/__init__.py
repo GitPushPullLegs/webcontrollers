@@ -4,5 +4,5 @@ from .common import WebController
 from .seis import SEISController
 from .schoology import SchoologyController
 
-__version__ = '0.0.12'
+__version__ = '0.0.13'
 __author__ = 'Joe Aguilar'
