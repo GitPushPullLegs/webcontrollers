@@ -8,6 +8,7 @@ from webcontrollers.common import WebController
 from webcontrollers.common.errors import *
 
 from datetime import datetime
+import re
 
 
 class SchoologyController(WebController):
@@ -78,3 +79,9 @@ class SchoologyController(WebController):
 
         self.driver.find_element_by_xpath("//*[text()='Next']").click()
         self.driver.find_element_by_xpath("//*[text()='Export Report']").click()
+
+    def download_usage(self, link: str):
+        """Downloads the usage report from the emailed link. If using a new browser, you may need to re-authenticate."""
+        self.driver.get(link)
+        link = re.sub(r"(?<=https://)[A-Za-z0-9]+(?=.schoology)", "app", link)[:-16]
+        self.driver.get(link)
