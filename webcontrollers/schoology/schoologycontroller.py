@@ -7,6 +7,8 @@ from selenium.webdriver.common.keys import Keys
 from webcontrollers.common import WebController
 from webcontrollers.common.errors import *
 
+from datetime import datetime
+
 
 class SchoologyController(WebController):
 
@@ -57,8 +59,11 @@ class SchoologyController(WebController):
                     header = False
                 csv_writer.writerow(school.values())
 
-    def request_usage(self, start_date, end_date):
+    def request_usage(self, start_date: datetime, end_date: datetime):
         """Requests a usage report to be emailed to you."""
+        start_date = start_date.strftime("%m/%d/%Y")
+        end_date = end_date.strftime("%m/%d/%Y")
+
         self.driver.get('https://app.schoology.com/school_analytics')
         self.driver.find_element_by_xpath("//*[text()='Actions']").click()
         self.driver.find_element_by_xpath("//*[text()='Export Report']").click()
