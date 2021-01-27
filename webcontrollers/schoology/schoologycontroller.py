@@ -2,6 +2,7 @@ from selenium.common.exceptions import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
 
 from webcontrollers.common import WebController
 from webcontrollers.common.errors import *
@@ -55,3 +56,20 @@ class SchoologyController(WebController):
                     csv_writer.writerow(school.keys())
                     header = False
                 csv_writer.writerow(school.values())
+
+    def request_usage(self, start_date, end_date):
+        """Requests a usage report to be emailed to you."""
+        self.driver.get('https://app.schoology.com/school_analytics')
+        self.driver.find_element_by_xpath("//*[text()='Actions']").click()
+        self.driver.find_element_by_xpath("//*[text()='Export Report']").click()
+
+        start_field = self.driver.find_element_by_xpath("//input[@type='DATE_START']")
+        start_field.send_keys(Keys.CONTROL, 'A', Keys.BACKSPACE)
+        start_field.send_keys(start_date)
+
+        end_field = self.driver.find_element_by_xpath("//input[@type='DATE_END']")
+        end_field.send_keys(Keys.CONTROL, 'A', Keys.BACKSPACE)
+        end_field.send_keys(end_date)
+
+        self.driver.find_element_by_xpath("//*[text()='Next']").click()
+        self.driver.find_element_by_xpath("//*[text()='Export Report']").click()
