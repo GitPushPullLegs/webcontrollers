@@ -33,6 +33,7 @@ class CALPADSController:
     def _event_hooks(self, r, *args, **kwargs):
         """Hooks into the request to pull the authorization credentials."""
         scheme, netloc, path, query, frag = urlsplit(r.url)
+        print(r.url)
         if path == '/Account/Login' and r.status_code == 200:
             self.session.cookies.update(r.cookies.get_dict())
             init_root = etree.fromstring(r.text, parser=etree.HTMLParser(encoding='utf8'))
