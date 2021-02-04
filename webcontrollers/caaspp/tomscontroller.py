@@ -93,4 +93,4 @@ class TOMSController(WebController):
             f'userid={self.user_id}'
         ]
 
-        self.driver.get('&'.join(str(part) for part in url_parts.values()))
+        self.driver.get('&'.join(str(part) for part in url_parts))
