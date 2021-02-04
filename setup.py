@@ -1,8 +1,9 @@
 from setuptools import setup, find_packages
+from webcontrollers import __version__
 
 setup(
     name='webcontrollers',
-    version='0.0.14',
+    version=__version__,
     description='A package to faciliate the interaction with CAASPP, SEIS, and more.',
     url='https://github.com/GitPushPullLegs/webcontrollers',
     author='Joe Aguilar',
