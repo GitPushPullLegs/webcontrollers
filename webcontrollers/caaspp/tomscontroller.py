@@ -112,3 +112,20 @@ class TOMSController(WebController):
         self.driver.find_element_by_xpath("//*[text()='Next']").click()
         self.driver.find_element_by_xpath("//*[@id='uploadfilepath']").send_keys(path)
         self.driver.find_element_by_xpath("//*[text()='Next']").click()
+
+    def test_settings_upload_is_valid(self) -> str:
+        """Returns true if the upload was valid, else, returns the file path for the error file."""
+        return BrowserWait(timeout=900, poll_frequency=5).until(self._test_settings_upload_is_valid)
+
+    def _test_settings_upload_is_valid(self):
+        """Gathers all td elements and uses the 3rd and 4th to validate the last uploaded file."""
+        elements = self.driver.find_elements_by_tag_name('td')
+        status = elements[3]
+        action = elements[4]
+
+        if status.text.startswith('Validated'):
+            action.click()
+            return True
+        elif status.text.startswith('Errors'):
+            action.click()
+            return BrowserWait(driver=self.driver).until_file_downloaded()
