@@ -105,3 +105,10 @@ class TOMSController(WebController):
         if self.driver.find_element_by_xpath('//*[text()="HTTP Status 404"]'):
             return '' #TODO: - Fail and let me know.
         return BrowserWait(driver=self.driver).until_file_downloaded()
+
+    def upload_test_settings(self, path: str):
+        """Uploads the TOMS Test Settings file."""
+        self.driver.get('https://mytoms.ets.org/mt/dt/uploadaccoms.htm')
+        self.driver.find_element_by_xpath("//*[text()='Next']").click()
+        self.driver.find_element_by_xpath("//*[@id='uploadfilepath']").send_keys(path)
+        self.driver.find_element_by_xpath("//*[text()='Next']").click()
