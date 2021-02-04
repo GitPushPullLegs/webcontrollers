@@ -5,6 +5,8 @@ from selenium.common.exceptions import *
 
 from webcontrollers.common import WebController
 from webcontrollers.common.errors import *
+from wait import BrowserWait
+from urllib.parse import urlsplit, urljoin
 
 
 class TOMSController(WebController):
@@ -94,3 +96,12 @@ class TOMSController(WebController):
         ]
 
         self.driver.get('&'.join(str(part) for part in url_parts))
+
+    def download_test_settings_template(self) -> str:
+        """Downloads the TOMS test settings file and returns the file path."""
+        file_name = 'CAASPP_Upload_Stu_Accom_Template_2020-2021_v1.xlsx'
+        url = urljoin('https://mytoms.ets.org/mt/resources/xls/', file_name)
+        self.driver.get(url)
+        if self.driver.find_element_by_xpath('//*[text()="HTTP Status 404"]'):
+            return '' #TODO: - Fail and let me know.
+        return BrowserWait(driver=self.driver).until_file_downloaded()
