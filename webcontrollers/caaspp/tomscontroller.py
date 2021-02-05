@@ -11,7 +11,7 @@ from urllib.parse import urlsplit, urljoin
 
 class TOMSController(WebController):
 
-    def login(self, username: str, password: str, retrieve_login_code=None):
+    def login(self, username: str, password: str, retrieve_login_code=None, **kwargs):
         """
         Logs into TOMS.
         :param username:
@@ -33,7 +33,7 @@ class TOMSController(WebController):
             if not retrieve_login_code:
                 raise AuthenticationError('Missing login code function.')
 
-            email_code = retrieve_login_code()
+            email_code = retrieve_login_code(**kwargs)
             self.driver.find_element_by_id('emailcode').send_keys(email_code)
             self.driver.find_element_by_xpath('//*[text()="Submit"]').click()
 
