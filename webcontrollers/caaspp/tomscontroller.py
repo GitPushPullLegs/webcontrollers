@@ -102,8 +102,11 @@ class TOMSController(WebController):
         file_name = 'CAASPP_Upload_Stu_Accom_Template_2020-2021_v1.xlsx'
         url = urljoin('https://mytoms.ets.org/mt/resources/xls/', file_name)
         self.driver.get(url)
-        if self.driver.find_element_by_xpath('//*[text()="HTTP Status 404"]'):
-            return '' #TODO: - Fail and let me know.
+        try:
+            if self.driver.find_element_by_xpath('//*[text()="HTTP Status 404"]'):
+                raise FileNotFoundError("This template is no longer available.")
+        except NoSuchElementException:
+            pass
         return BrowserWait(driver=self.driver).until_file_downloaded()
 
     def upload_test_settings(self, path: str):
