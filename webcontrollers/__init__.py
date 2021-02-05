@@ -5,5 +5,5 @@ from .seis import SEISController
 from .schoology import SchoologyController
 from .calpads import CALPADSController
 
-__version__ = '0.0.15'
+__version__ = '0.0.16'
 __author__ = 'Joe Aguilar'
