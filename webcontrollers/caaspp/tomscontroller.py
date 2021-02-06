@@ -122,6 +122,12 @@ class TOMSController(WebController):
         self.driver.find_element_by_xpath("//*[@id='uploadfilepath']").send_keys(path)
         self.driver.find_element_by_xpath("//*[text()='Next']").click()
 
+        try:
+            if self.driver.find_element_by_xpath('//*[text()="Last file validate attempt was NOT successful. Only .xlsx format files can be uploaded. Please update the file and try uploading again."]'):
+                raise InterruptedError("Invalid upload file for TOMS Test Settings.")
+        except NoSuchElementException:
+            pass
+
     def test_settings_upload_is_valid(self) -> str:
         """Returns true if the upload was valid, else, returns the file path for the error file."""
         return BrowserWait(timeout=900, poll_frequency=5).until(self._test_settings_upload_is_valid)
