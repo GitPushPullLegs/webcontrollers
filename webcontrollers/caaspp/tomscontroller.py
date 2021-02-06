@@ -35,7 +35,7 @@ class TOMSController(WebController):
 
             email_code = retrieve_login_code(**kwargs)
             self.driver.find_element_by_id('emailcode').send_keys(email_code)
-            self.driver.find_element_by_xpath('//*[text()="Submit"]').click()
+            self.driver.find_element_by_id('kc-login').click()
 
         self._gather_user_info()
 
