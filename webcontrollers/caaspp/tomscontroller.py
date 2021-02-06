@@ -25,7 +25,7 @@ class TOMSController(WebController):
         try:
             if self.driver.find_element_by_xpath('//*[text()="The username or password you entered is incorrect. To '
                                                  'request a new link for resetting your password, select "]'):
-                raise AuthenticationError('Username or password incorrect.')
+                raise AuthenticationError('Invalid credentials.')
         except NoSuchElementException:
             pass
 
