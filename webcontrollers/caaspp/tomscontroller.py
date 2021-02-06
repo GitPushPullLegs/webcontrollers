@@ -37,6 +37,12 @@ class TOMSController(WebController):
             self.driver.find_element_by_id('emailcode').send_keys(email_code)
             self.driver.find_element_by_id('kc-login').click()
 
+        try:
+            if self.driver.find_element_by_xpath('//*[text()="Invalid email code. Please try again"]'):
+                raise AuthenticationError('Invalid login code.')
+        except NoSuchElementException:
+            pass
+
         self._gather_user_info()
 
     def _gather_user_info(self):
