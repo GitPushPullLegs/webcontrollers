@@ -118,9 +118,9 @@ class TOMSController(WebController):
     def upload_test_settings(self, path: str):
         """Uploads the TOMS Test Settings file."""
         self.driver.get('https://mytoms.ets.org/mt/dt/uploadaccoms.htm')
-        self.driver.find_element_by_xpath("//*[text()='Next']").click()
+        self.driver.execute_script("javascript:doStepMove(1);")
         self.driver.find_element_by_xpath("//*[@id='uploadfilepath']").send_keys(path)
-        self.driver.find_element_by_xpath("//*[text()='Next']").click()
+        self.driver.execute_script("javascript:doStepMove(1);")
 
         try:
             if self.driver.find_element_by_xpath('//*[text()="Last file validate attempt was NOT successful. Only .xlsx format files can be uploaded. Please update the file and try uploading again."]'):
