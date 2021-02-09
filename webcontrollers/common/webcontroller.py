@@ -14,7 +14,10 @@ class WebController:
         default download path. If specified but doesn't exist, will create the directory.
         """
         if driver:
-            self.driver = driver
+            if isinstance(driver, webdriver.chrome.webdriver.WebDriver): # Catch subclass of selenium webdriver.
+                self.driver = driver
+            else:
+                self.driver = driver.driver # If a subclass of this object or Webbot.
             return
 
         options = webdriver.ChromeOptions()
