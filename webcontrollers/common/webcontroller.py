@@ -25,20 +25,25 @@ class WebController:
             options.add_argument("--headless")
 
         if isinstance(download_path, str):
-            absolute_download_path = os.path.abspath(download_path)
-            if not os.path.isdir(absolute_download_path):
+            self.absolute_download_path = os.path.abspath(download_path)
+            if not os.path.isdir(self.absolute_download_path):
                 try:
-                    os.makedirs(absolute_download_path)
-                    options.add_experimental_option('prefs', {'download.default_directory': absolute_download_path})
+                    os.makedirs(self.absolute_download_path)
+                    options.add_experimental_option('prefs', {'download.default_directory': self.absolute_download_path})
                 except OSError as os_error:
                     print(f"Unable to create download path. Error: {os_error}")
             else:
-                options.add_experimental_option('prefs', {'download.default_directory': absolute_download_path})
+                options.add_experimental_option('prefs', {'download.default_directory': self.absolute_download_path})
 
         driver_path = os.path.join(os.path.split(__file__)[0], f'drivers{os.path.sep}chromedriver.exe')
         # TODO: Add support for alternate operating systems.
 
         self.driver = webdriver.Chrome(executable_path=driver_path, options=options)
+
+        if isinstance(download_path, str):
+            self.driver.command_executor._commands["send_command"] = ("POST", '/session/$sessionId/chromium/send_command')
+            params = {'cmd': 'Page.setDownloadBehavior', 'params': {'behavior': 'allow', 'downloadPath': self.absolute_download_path}}
+            command_result = self.driver.execute("send_command", params)
 
         welcome_path = os.path.join(os.path.split(__file__)[0], f'html{os.path.sep}welcome.html')
         self.driver.get(welcome_path)
