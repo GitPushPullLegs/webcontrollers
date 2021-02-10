@@ -11,7 +11,7 @@ class WebController:
         :param driver: A user may pass an existing driver that's already been setup.
         :param show_window: Default is True.
         :param download_path: If not set, will use the
-        default download path. If specified but doesn't exist, will create the directory.
+        default download path. If specified but doesn't exist, will create the directory. Must be set in order to download headless.
         """
         if driver:
             if isinstance(driver, webdriver.chrome.webdriver.WebDriver): # Catch subclass of selenium webdriver.
