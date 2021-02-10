@@ -29,11 +29,10 @@ class WebController:
             if not os.path.isdir(self.absolute_download_path):
                 try:
                     os.makedirs(self.absolute_download_path)
-                    options.add_experimental_option('prefs', {'download.default_directory': self.absolute_download_path})
                 except OSError as os_error:
                     print(f"Unable to create download path. Error: {os_error}")
-            else:
-                options.add_experimental_option('prefs', {'download.default_directory': self.absolute_download_path})
+
+            options.add_experimental_option('prefs', {'download.default_directory': self.absolute_download_path})
 
         driver_path = os.path.join(os.path.split(__file__)[0], f'drivers{os.path.sep}chromedriver.exe')
         # TODO: Add support for alternate operating systems.
