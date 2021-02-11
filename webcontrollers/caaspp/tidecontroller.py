@@ -1,7 +1,7 @@
-from webcontrollers.common import WebController
+from .caasppbasecontroller import CAASPPBaseController
 
 
-class TIDEController(WebController):
+class TIDEController(CAASPPBaseController):
 
     def login(self, username: str, password: str, retrieve_login_code=None, **kwargs):
         """
