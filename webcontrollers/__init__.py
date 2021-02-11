@@ -1,5 +1,6 @@
 from .caaspp import CERSController
 from .caaspp import TOMSController
+from .caaspp import TIDEController
 from .common import WebController
 from .seis import SEISController
 from .schoology import SchoologyController
