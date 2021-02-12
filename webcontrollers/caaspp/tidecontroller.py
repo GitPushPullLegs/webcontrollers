@@ -18,12 +18,24 @@ class TIDEController(CAASPPBaseController):
         self._login(link="https://ca.tide.cambiumast.com/",
                     username=username, password=password, retrieve_login_code=retrieve_login_code, **kwargs)
         self._get_impersonate_dto()
+        self._get_entity_hierarchy()
 
     def _setup_request_session(self):
         session = requests.session()
         session.headers.update(self._HEADERS)
         [session.cookies.set(c['name'], c['value']) for c in self.driver.get_cookies()]
         return session
+
+    def _get_entity_hierarchy(self, role_code: str = None):
+        if not role_code:
+            role_code = input("Role code: ")
+        session = self._setup_request_session()
+        data = json.loads(session.get(rf"https://ca.tide.cambiumast.com/api/EntityHierarchy/GetEntityHierarchyForImpersonate?clientname={quote(self.client_name)}&roleCode={quote(role_code)}").text)
+        entities = []
+        for entity in data['Entities']['ChildEntities']:
+            entities.append({'title': entity['EntityAttributeData'][0]['Value'], 'key': entity['EntityKey']})
+        print("Entities")
+        print(entities)
 
     def _get_impersonate_dto(self):
         session = self._setup_request_session()
