@@ -19,6 +19,8 @@ class TIDEController(CAASPPBaseController):
                     username=username, password=password, retrieve_login_code=retrieve_login_code, **kwargs)
         self._get_impersonate_dto()
         self._get_entity_hierarchy()
+        self._save_impersonate()
+        self.driver.get('https://ca.tide.cambiumast.com/Home/Index')
 
     def _setup_request_session(self):
         session = requests.session()
@@ -29,6 +31,7 @@ class TIDEController(CAASPPBaseController):
     def _get_entity_hierarchy(self, role_code: str = None):
         if not role_code:
             role_code = input("Role code: ")
+        self.role_code = role_code
         session = self._setup_request_session()
         data = json.loads(session.get(rf"https://ca.tide.cambiumast.com/api/EntityHierarchy/GetEntityHierarchyForImpersonate?clientname={quote(self.client_name)}&roleCode={quote(role_code)}").text)
         entities = []
@@ -50,4 +53,18 @@ class TIDEController(CAASPPBaseController):
         self.test_administration_key = test_administration_key
         print(roles)
 
-        #TODO: Use this to set the role of the user.
+    def _save_impersonate(self, entity_key: str = None):
+        if not entity_key:
+            entity_key = input("Entity Key: ")
+        payload = {
+            "ClientName": self.client_name,
+            "SelectedRole": self.role_code,
+            "SelectedTestAdministrationKey": self.test_administration_key,
+            "ActingEntityKey": entity_key
+        }
+        session = self._setup_request_session()
+        response = session.post(r"https://ca.tide.cambiumast.com/api/Authorization/SaveImpersonate", json=payload)
+        print(response)
+        for cookie in response.cookies:
+            print(cookie.name)
+            self.driver.add_cookie({'name': cookie.name, 'value': cookie.value})
