@@ -1,6 +1,7 @@
 from .caasppbasecontroller import CAASPPBaseController
 import requests
 import json
+from urllib.parse import quote
 
 
 class TIDEController(CAASPPBaseController):
@@ -22,5 +23,15 @@ class TIDEController(CAASPPBaseController):
         session = requests.session()
         session.headers.update(_HEADERS)
         [session.cookies.set(c['name'], c['value']) for c in self.driver.get_cookies()]
-        data = session.post(r"https://ca.tide.cambiumast.com/api/Authorization/GetImpersonateDTO").text
+        data = json.loads(session.post(r"https://ca.tide.cambiumast.com/api/Authorization/GetImpersonateDTO").text)
+        client_name = data['ClientList'][0]['Code']
+        test_administration_key = data['TestAdministrationsList'][0]['Code']
+        roles = []
+        for role in data['RolesList']:
+            if role['DataProperty'] == 'DISTRICT':
+                roles.append({'title': role['Label'], 'code': role['Code']})
+        self.client_name = client_name
+        self.test_administration_key = test_administration_key
+        print(roles)
+
         #TODO: Use this to set the role of the user.
