@@ -19,10 +19,14 @@ class TIDEController(CAASPPBaseController):
                     username=username, password=password, retrieve_login_code=retrieve_login_code, **kwargs)
         self._get_impersonate_dto()
 
-    def _get_impersonate_dto(self):
+    def _setup_request_session(self):
         session = requests.session()
         session.headers.update(self._HEADERS)
         [session.cookies.set(c['name'], c['value']) for c in self.driver.get_cookies()]
+        return session
+
+    def _get_impersonate_dto(self):
+        session = self._setup_request_session()
         data = json.loads(session.post(r"https://ca.tide.cambiumast.com/api/Authorization/GetImpersonateDTO").text)
         client_name = data['ClientList'][0]['Code']
         test_administration_key = data['TestAdministrationsList'][0]['Code']
