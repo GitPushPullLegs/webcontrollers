@@ -5,6 +5,8 @@ from urllib.parse import quote
 
 
 class TIDEController(CAASPPBaseController):
+    _HEADERS = {
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
 
     def login(self, username: str, password: str, retrieve_login_code=None, **kwargs):
         """
@@ -18,10 +20,8 @@ class TIDEController(CAASPPBaseController):
         self._get_impersonate_dto()
 
     def _get_impersonate_dto(self):
-        _HEADERS = {
-            'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
         session = requests.session()
-        session.headers.update(_HEADERS)
+        session.headers.update(self._HEADERS)
         [session.cookies.set(c['name'], c['value']) for c in self.driver.get_cookies()]
         data = json.loads(session.post(r"https://ca.tide.cambiumast.com/api/Authorization/GetImpersonateDTO").text)
         client_name = data['ClientList'][0]['Code']
