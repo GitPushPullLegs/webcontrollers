@@ -1,5 +1,6 @@
 from .caasppbasecontroller import CAASPPBaseController
 import requests
+import json
 
 
 class TIDEController(CAASPPBaseController):
@@ -13,9 +14,9 @@ class TIDEController(CAASPPBaseController):
         """
         self._login(link="https://ca.tide.cambiumast.com/",
                     username=username, password=password, retrieve_login_code=retrieve_login_code, **kwargs)
-        self.get_impersonate_dto()
+        self._get_impersonate_dto()
 
-    def get_impersonate_dto(self):
+    def _get_impersonate_dto(self):
         _HEADERS = {
             'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36"}
         session = requests.session()
