@@ -29,6 +29,7 @@ class TIDEController(CAASPPBaseController):
         return session
 
     def _get_entity_hierarchy(self, role_code: str = None):
+        """Gathers the entities on which you can act."""
         if not role_code:
             role_code = input("Role code: ")
         self.role_code = role_code
@@ -41,6 +42,7 @@ class TIDEController(CAASPPBaseController):
         print(entities)
 
     def _get_impersonate_dto(self):
+        """Gathers your client name and test administration key necessary to save impersonate."""
         session = self._setup_request_session()
         data = json.loads(session.post(r"https://ca.tide.cambiumast.com/api/Authorization/GetImpersonateDTO").text)
         client_name = data['ClientList'][0]['Code']
@@ -54,6 +56,7 @@ class TIDEController(CAASPPBaseController):
         print(roles)
 
     def _save_impersonate(self, entity_key: str = None):
+        """Sends your role to TIDE."""
         if not entity_key:
             entity_key = input("Entity Key: ")
         payload = {
